@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+<h4>声明式渲染</h4>
+<div id="id1">{{message}}</div>
+<hr>
+<h4>条件与循环</h4>
+<div class="clz1">
+	<span>{{randomNumber}}</span>
+	<p v-show="showFlag">测试显示</p>
+</div>
+<div id="id2">
+	
+</div>
+
+<hr>
+<h4>处理用户输入</h4>
+<div id="id3">
+	<input v-model="message"></input>
+</div>
+
+<h4>组件化应用</h4>
+	
+</body>
+<script>
+	new Vue({
+	  el:"#id1",
+	  data:{
+	   message:"测试消息"
+	  }
+	});
+	new Vue({
+	  el:".clz1",
+	  data:{
+	   randomNumber: Math.floor(Math.random() * 10)%2,
+	   showFlag: randomNumber
+	  }
+	});
+	new Vue({
+	  el:"#id3",
+	  data:{
+	   	message:new Date().toLocaleString()
+	  }
+	});
+
+</script>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件通信</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>    
+</head>
+<body>
+    <div id="id1">
+        <article>通过prop向子组件传递数据</article>
+        <menu-li v-for="menu in menus" v-bind:menu="menu"></menu-li>
+    </div>
+    <hr>
+    <div id="id2">
+        <article>监听emit子组件的事件</article>
+        <div :style="{fontSize: postFontSize +'em'}">
+            <menu-justify v-for="menu in menus" v-bind:menu="menu" v-on:enlarge="postFontSize+=$event" v-on:ensmall="postFontSize-=$event"></menu-justify>
+        </div>
+    </div>
+</body>
+<script>
+    Vue.component('menu-li',{
+        props:['menu'],
+        template:`
+         <li id='menu.id' alt='menu.menuKey'>{{ menu.name }}</li>
+        `
+    });
+    new Vue({
+        el:"#id1",
+        data:{
+            menus:[
+                {"id":1,"menuKey":"alt+1","name":"菜单1"},
+                {"id":2,"menuKey":"alt+2","name":"菜单2"},
+                {"id":3,"menuKey":"alt+3","name":"菜单3"}
+            ]
+        }
+    });
+
+    Vue.component('menu-justify',{
+        props:['menu'],
+        template:`
+        <div>
+            <li id='menu.id' alt='menu.menuKey'>{{ menu.name }}</li>
+            <button v-on:click="$emit('enlarge',0.1)">Enlarge-text</button>
+            <button v-on:click="$emit('ensmall',0.1)">Ensmall-text</button>          
+        </div>    
+        `
+    });
+    new Vue({
+        el:"#id2",
+        data:{
+            postFontSize:1,
+            menus:[
+                {"id":1,"menuKey":"alt+1","name":"菜单1"},
+                {"id":2,"menuKey":"alt+2","name":"菜单2"},
+                {"id":3,"menuKey":"alt+3","name":"菜单3"}
+            ],
+            
+        }
+    })
+</script>
+</html>

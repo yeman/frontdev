@@ -22,7 +22,7 @@
 <hr>
 <h4>处理用户输入</h4>
 <div id="id3">
-	<input v-model="message"></input>
+	<input v-model="message">
 </div>
 
 <h4>组件化应用</h4>
@@ -37,10 +37,14 @@
 	});
 	new Vue({
 	  el:".clz1",
-	  data:{
-	   randomNumber: Math.floor(Math.random() * 10)%2,
-	   showFlag: randomNumber
-	  }
+	  data:{			
+			 randomNumber: Math.floor(Math.random() * 10)
+		},
+		computed: {
+			showFlag:function(){
+				return this.randomNumber%2==1;
+			}
+		}
 	});
 	new Vue({
 	  el:"#id3",

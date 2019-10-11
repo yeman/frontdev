@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script src="../node_modules/vue-router/dist/vue-router.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <router-link to="/user/jack">jack</router-link>
+        <router-link to="/user/lucy">lucy</router-link>
+        <router-link to="/query?username=1&id=2">查询参数</router-link>
+        <router-view></router-view>
+    </div>
+    <script>
+        //使用{{$route.params.路由参数}} 获取路由参数
+        const User = {
+            template:`
+                <div>用户: {{ $route.params.username}}</div>
+            `
+        }
+        const UserQuery = {
+            template:`
+                <div>查询参数: {{ $route.query}}</div>
+            `
+        }
+
+        //动态路由 : 标识路由参数
+        const routers = new VueRouter({
+            routes:[
+                {path:'/user/:username',component:User},
+                {path:'/query',component:UserQuery}
+            ]
+        })
+        new Vue({
+            el:'#app',
+            router:routers
+        })
+    </script>
+
+</body>
+</html>

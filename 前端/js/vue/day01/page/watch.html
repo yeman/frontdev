@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        const App = {
+            template:`
+                <div>
+                    <article>简单数据类型改变,使用watch监听</article>
+                    <button v-model="msg" @click="change">改变值</button>
+                    <span>{{ msg }}</span>
+                    <hr></hr>
+                    <article>复杂数据类型改变,使用watch深度监听</article>
+                    <button @click='userInfo.userName ="jack"'>改变值</button>
+                    <span>{{ userInfo }}</span>
+                </div>
+            `,
+            data() {
+                return {
+                    msg:'hello',
+                    cnt:0,
+                    userInfo:{"userId":1,"userName":"lucy"}
+                }
+            },
+            methods: {
+                change:function(){
+                    this.msg = this.msg.substr(0,5)+(++this.cnt);
+                }
+            },
+            watch: {
+                msg:function(newv,oldv){
+                  console.log(newv,oldv);
+                  if(newv==='hello3'){
+                      alert(this.msg);
+                  }
+                },
+                userInfo:{
+                    deep:true,
+                    handler:function(newv,oldv){
+                        console.log(newv,oldv);
+                    }
+                }
+            }
+        }
+        new Vue({
+            el:'#app',
+            template:'<App></App>',
+            components:{
+                App
+            }
+        })
+    </script>
+</body>
+</html>

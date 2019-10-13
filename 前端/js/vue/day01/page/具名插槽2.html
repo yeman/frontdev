@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.js"></script>
+    <title>Document</title> 
+</head>
+
+<body>
+    <div id="app">
+    </div>
+    <script>
+        //声明全局组件
+        Vue.component('mySlot', {
+            template: `
+            <div class='mySlotClass'>
+                <slot name='fistSlot'></slot>
+                <span><slot></slot></span>
+                <h3><slot name='secondSlot'></slot></h3>
+            </div>
+         `
+        });
+        var App={
+            template:`
+            <div>
+                <div class='app'>
+                    插槽前内容
+                    <mySlot>
+                        <h3 slot='fistSlot'><code>使用 slot='插槽名'</code></h3>
+                        <h4 slot='default'><code>默认插槽名称</code></h4>
+                        <span slot='secondSlot'><code>使用 slot='插槽名'</code></span>
+                    </mySlot>
+                    插槽后内容
+                </div>
+            </div>
+            `
+        }
+        new Vue({
+            el: '#app',
+            template:`<App></App>`,
+            components: {
+                App
+            }
+        })
+    </script>
+</body>
+
+</html>

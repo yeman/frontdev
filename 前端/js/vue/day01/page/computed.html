@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        const App = {
+            template:`
+                <div>
+                    香蕉单价:<span>{{bananaPrice}}</span><br>
+                    数量:<input type="number" v-model="bananaNum"></input><br>
+                    苹果单价:<span>{{applePrice}}</span><br>
+                    数量:<input type="number" v-model="appleNum"></input><br>
+                    总价:<span>{{getTotolPrice}}</span>
+                </div>
+            `,
+            data() {
+                return {
+                    bananaNum:0,
+                    appleNum:0,
+                    bananaPrice:4,
+                    applePrice:7
+                }
+            },
+            computed: {
+                getTotolPrice:function(){
+                    return (this.bananaNum*this.bananaPrice+this.appleNum*this.applePrice);
+                }
+            },
+        };
+        new Vue({
+            el:"#app",
+            template:'<App></App>',
+            components: {
+                App
+            }
+        })
+    </script>
+</body>
+</html>

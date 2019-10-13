@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.js"></script>
+    <title>v-bind</title>
+    <style>
+            .po{
+                color:blue;
+            }
+            .active{
+                color: red;
+                font-size: 4px;
+            }
+        </style>
+</head>
+<body>
+    <div id="app">
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            template:`
+                <div>
+                    <p class='po' v-bind:class='{active:isRed}'>bind绑定</p>
+                    <button @click='changeColor'>改变颜色</button>
+                </div>
+            `,
+            data () {
+                return {
+                    isRed:false
+                }
+            },
+            methods: {
+                changeColor:function(e){
+                    console.log(e.target.innerText);
+                     this.isRed = !this.isRed;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

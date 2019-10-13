@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+     const App = {
+         template:`
+            <div>
+                <ul>
+                    <li>模块1</li>
+                    <slot></slot>
+                    <li>模块2</li>
+                    <slot name='module2'></slot>
+                    <li>模块3</li>
+                    <slot name='module3'></slot>
+                </ul>
+            </div>
+         `
+     }
+     new Vue({
+         el:'#app',
+         template:`
+         <App>
+           <span slot='module2'>模块二内容</span>
+           <span slot='module3'>模块三内容,哈哈</span>
+           <span slot='default'>默认模块内容,默认</span>
+         </App>
+         `,
+         components: {
+             App
+         }
+     })
+    </script>
+</body>
+</html>

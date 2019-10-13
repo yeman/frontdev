@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <code>v-bind:value 简写:value,v-on:input简写 @input</code>
+    <div id="app"></div>
+    <script>
+        new Vue({
+            el:'#app',
+            template:`
+                <div>
+                     <!--<input type='text' v-model='msg'></input></br>-->
+                     <input type='text' :value='msg' @input='inputEvent'></input></br>
+                    <span>内容:{{ msg }}</span>
+                </div>
+            `,
+            data () {
+                return {
+                    msg:'测试'
+                }
+            },
+            methods: {
+                inputEvent:function(e){
+                    this.msg = e.target.value;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

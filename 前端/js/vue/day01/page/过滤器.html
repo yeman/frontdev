@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+     const App = {
+         template:`
+            <div>
+                <div></input>数量:<input type="number" value="quality" v-model="quality"></input></div>
+                <div><span>{{quality | myFilter}}</span></div>
+            </div>
+         `,
+         data() {
+             return {
+                quality:0
+             }
+         },
+         filters:{
+            myFilter:function(v){
+                return  '$'+v;
+            }
+         }
+     }
+     new Vue({
+         el:'#app',
+         template:'<App></App>',
+         components:{
+             App
+         }
+     })
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script src="../node_modules/vue-router/dist/vue-router.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <router-link to="/user/jack">user/jack</router-link>
+        <router-link to="/user/jack/profile">user/jack/profile</router-link>
+        <router-link to="/user/jack/content">user/jack/content</router-link>
+        <router-view></router-view>
+    </div>
+    <script>
+        const User = {
+            template:`
+            <div class="user">
+               <div>用户:{{ $route.params.userName }}</div>
+               <router-view></router-view>
+            </div>
+            `
+        }
+        const UserHome = {
+            template:`
+             <div>User Home</div>
+            `
+        }
+        const UserProfile = {
+            template:`
+             <div>User profile</div>
+            `
+        }
+        const UserContent = {
+            template:`
+             <div>User Content</div>
+            `
+        }
+        //嵌套路由
+        const myroute = new VueRouter({
+            routes: [
+                {path:'/user/:userName',component:User,
+                children:[
+                    {path:'',component:UserHome},
+                    {path:'profile',component: UserProfile},
+                    {path:'content',component: UserContent},
+                ]}
+            ]
+        })
+        new Vue({
+            el:'#app',
+            router:myroute
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script src="../node_modules/vue-router/dist/vue-router.js"></script>
+    <title>Document</title>
+    <style>
+     * {
+       margin: 0px;
+       padding: 0px;
+     }
+     .title{
+        width: 100%;
+        border: 1px solid #ccc;
+        height: 100px
+     }
+     .left{
+        width: 15%;
+        height: 800px;
+        float: left;
+        border-radius: 3% 3% 3% 3%;
+        border:1px solid brown
+     }
+     .content{
+        float: right;
+        width: 84%;
+        height: 800px;
+        border:1px dashed rgb(40, 17, 63)
+     }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <router-link to="/user">/导航</router-link>
+        <router-view class="title"></router-view>
+        <router-view name="leftnav" class="left"></router-view>
+        <router-view name="content" class="content"></router-view>
+    </div>
+    <script>
+        const Title = {
+            template:`
+              <div>标题</div>
+            `
+        }
+        const LeftNav = {
+            template:`
+              <div>
+                侧边栏
+              </div>
+            `
+        }
+        const Content = {
+            template:`
+              <div>内容</div>
+            `
+        }
+        const myRouter = new VueRouter({
+            routes: [
+                {path:'/user',components:{
+                    default: Title,
+                    leftnav: LeftNav,
+                    content: Content
+                }}
+            ]
+        })
+    new Vue({
+        el:'#app',
+        router: myRouter
+    })
+        
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var tmp  = new Date();
+        function f1(){
+            console.log(tmp);
+            if(false){
+                //这里由于var存在变量的提升 导致 f1报错 undefined
+                var tmp = "测试";
+            }
+        }
+        f1();
+        //全局变量内存泄漏 i
+        var s = 'hello';
+        for(var i=0; i<s.length ;i++){
+            console.log("s["+i+"]",s[i])
+        }
+        console.log("i",i)
+
+        //使用 let 不会报错
+        let c = new Date();
+        function f2(){
+            console.log("f2",c);
+            if(true){               
+                c = "测试";
+            }
+            console.log("f2",c);
+        }
+        f2();
+
+        //ES5 函数也存在作用域提升,ES6 级作用域内声明的函数类似于let对作用域之外没有影响ES6 是会报错的
+        function fnc(){console.log("外层函数")};
+        (function(){
+            function fnc(){console.log("内层函数")};
+            if(false){
+                
+            }
+            fnc();
+        }())
+     </script>
+</body>
+</html>

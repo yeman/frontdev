@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1 ES6 Const 表示声明的是常量,一旦声明就必须初始化,且引用地址不能改变
+        //const PI; Missing initializer in const declaration
+        //console.log("PI",PI);
+        const PI=3.14;
+        console.log("PI",PI);
+        //PI=3.1415926;//Assignment to constant variable.
+        console.log("PI",PI);
+        //2 Const和 let一样只存在块级作用域范围有效
+        if(true){
+            const education=9;
+        }
+        // Uncaught ReferenceError: education is not defined
+        //console.log(education);
+
+        //3 const应用地址不变不代表内容不可变
+        const hero = {"name":"邱少云,董存瑞"};
+        hero.name="戚继光";
+        console.log(hero);
+        //hero = {};//此处改变了应用地址会报错 Uncaught TypeError: Assignment to constant variable.
+        console.log(hero);
+    </script>
+</body>
+</html>

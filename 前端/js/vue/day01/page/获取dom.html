@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        Vue.component('App',{
+            template:`
+                <div>
+                    <code>使用ref属性获取dom节点</code><br>
+                    用户名:<input type="text" name="userName" ref="userName"></input><br>
+                    密码:<input type="text" name="password" ref="password" v-if="show"></input><br>
+                </div>
+            `,
+            data() {
+                return {
+                    show:false
+                }
+            },
+            mounted() {
+                console.log(this.$refs.userName);
+                //this.$refs.userName.focus();
+                this.show = true;                
+                //TODO    this.$refs.password.focus(); 并不执行聚集事件
+                //nextTick是在Dom更新循环结束之后执行的延迟回调,在修改数据之后使用$nextTick可以在回调之后获取更新之后的dom
+                this.$nextTick(function(){
+                    this.$refs.password.focus();
+                })
+            }
+        });
+       
+        new Vue({
+            el:"#app",
+            template:`<App></App>`
+        })
+    </script>
+</body>
+</html>

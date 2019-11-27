@@ -2,7 +2,7 @@
   "name": "vue01",
   "version": "1.0.0",
   "description": "demo项目",
-  "author": "yeman <yeman@dtinsure.com>",
+  "author": "yeman <1172882148@qq.com>",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
